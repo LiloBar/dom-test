@@ -14,8 +14,9 @@ describe(' textBill function', function() {
   });
   it('should return the amont of a total cost of calls and sms bill', function() {
     var factroryfun = FactoryFun()
-    factroryfun.bill('call, sms');
-    assert.equal( factroryfun.getTotalBill(), 0);
+    factroryfun.bill('call');
+    factroryfun.bill('sms');
+    assert.equal( factroryfun.getTotalBill(), 3.50);
 
 });
 });

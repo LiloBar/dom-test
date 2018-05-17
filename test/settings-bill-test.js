@@ -23,9 +23,12 @@ describe(' settingsBill function', function() {
     settingsWithBill.setCall('2.75')
     settingsWithBill.setSms('0.70')
 
-    settingsWithBill.calcBill('sms, call');
+    settingsWithBill.calcBill('call');
+    settingsWithBill.calcBill('call');
+    settingsWithBill.calcBill('sms');
+    settingsWithBill.calcBill('sms');
 
-    assert.equal(settingsWithBill.getTotal(), 0.00);
+    assert.equal(settingsWithBill.getTotal(), 6.90);
 
   });
 
