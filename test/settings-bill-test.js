@@ -34,19 +34,29 @@ describe(' settingsBill function', function() {
 
   it('should turn orange when reaches the warning amount', function() {
     var settingsWithBill = SettingsWithBill();
-    settingsWithBill.setWarningLevel('')
-    settingsWithBill.calcBill('');
+    settingsWithBill.setWarningLevel(30)
+    settingsWithBill.setCall(15);
+    settingsWithBill.setSms(15);
+    settingsWithBill.calcBill('call');
+    settingsWithBill.calcBill('sms');
 
-    assert.equal(settingsWithBill.getTotal(), 0.00);
+    assert.equal(settingsWithBill.getcall(), 15.00);
+    assert.equal(settingsWithBill.getsms(), 15.00);
+    assert.equal(settingsWithBill.getTotal(), 30.00);
 
   });
 
   it('should turn red when it reaches the critacal amount', function() {
     var settingsWithBill = SettingsWithBill();
-    settingsWithBill.setCriticalLevel('')
-    settingsWithBill.calcBill('');
+    settingsWithBill.setCriticalLevel(50)
+    settingsWithBill.setCall(20);
+    settingsWithBill.setCall(20);
+    settingsWithBill.setSms(10);
+    settingsWithBill.calcBill('call');
+    settingsWithBill.calcBill('call');
+    settingsWithBill.calcBill('sms');
+    assert.equal(settingsWithBill.getTotal(), 50.00);
 
-    assert.equal(settingsWithBill.getTotal(), 0.00);
 
   });
 
