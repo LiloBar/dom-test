@@ -12,40 +12,33 @@ function SettingsWithBill() {
   //logic function
   function settingsBill(billText) {
 
+    if (reachedCriticalLevel()){
+      return;
+    }
 
-      var settingsItemType = billText.trim();
-
-      if (settingsItemType === "call") {
-        callamount += callcost;
-
-      }
-      if (totalamount > criticalevel) {
-        var diff = totalamount - criticalevel;
-        callamount -= diff;
-      }
-      else if (settingsItemType === "sms") {
-        smsamount += smscost;
-
-      }
-
-      if (totalamount > criticalevel) {
-        var diff = totalamount - criticalevel;
-        smsamount -= diff;
-      }
-
-
-      // if (reachedCriticalLevel()){
-      //   return;
-      // }
-
+    var settingsItemType = billText.trim();
+    if (settingsItemType === "call") {
+      callamount += callcost;
+    }
+    if (totalamount > criticalevel) {
+      var diff = totalamount - criticalevel;
+      callamount -= diff;
+    } else if (settingsItemType === "sms") {
+      smsamount += smscost;
 
     }
+
+    if (totalamount > criticalevel) {
+      var diff = totalamount - criticalevel;
+      smsamount -= diff;
+    }
+
+  }
 
   //setters
 
   function setCostcall(value) {
     callcost = parseFloat(value);
-
 
   }
 
@@ -66,14 +59,13 @@ function SettingsWithBill() {
 
   //getters
 
-  function totalSettings() {
+  function TotalSettings() {
 
     return (callamount + smsamount).toFixed(2)
 
   }
 
   function getCostCall() {
-  
     return callamount.toFixed(2);
   }
 
@@ -100,8 +92,6 @@ function SettingsWithBill() {
     return totalSettings() >= criticalevel;
   }
 
-
-
   return {
     calcBill: settingsBill,
     setCall: setCostcall,
@@ -112,9 +102,9 @@ function SettingsWithBill() {
     getcall: getCostCall,
     getTotal: totalSettings,
     getWaring: reachedWarningLevel,
-    getCritical: reachedCriticalLevel,
+    getCritical: reachedCriticalLevel
 
   }
 }
 
-// var settingsWithBill = SettingsWithBill();
+var settingsWithBill = SettingsWithBill();
